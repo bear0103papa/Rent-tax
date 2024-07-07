@@ -11,18 +11,18 @@ function calculateRent() {
     
     if (includeTax) {
         actualRent = rentAmount;
-        withholdingAmount = actualRent * 0.1;
-        healthInsurance = actualRent * 0.0211;
+        withholdingAmount = Math.round(actualRent * 0.1);
+        healthInsurance = Math.round(actualRent * 0.0211);
     } else {
-        actualRent = rentAmount / (1 - 0.1 - 0.0211);
-        withholdingAmount = actualRent * 0.1;
-        healthInsurance = actualRent * 0.0211;
+        actualRent = Math.round(rentAmount / (1 - 0.1 - 0.0211));
+        withholdingAmount = Math.round(actualRent * 0.1);
+        healthInsurance = Math.round(actualRent * 0.0211);
     }
     
-    document.getElementById('contractRent').textContent = rentAmount.toFixed(2);
-    document.getElementById('withholdingAmount').textContent = withholdingAmount.toFixed(2);
-    document.getElementById('healthInsurance').textContent = healthInsurance.toFixed(2);
-    document.getElementById('actualRent').textContent = actualRent.toFixed(2);
+    document.getElementById('contractRent').textContent = Math.round(rentAmount);
+    document.getElementById('withholdingAmount').textContent = withholdingAmount;
+    document.getElementById('healthInsurance').textContent = healthInsurance;
+    document.getElementById('actualRent').textContent = actualRent;
     
     document.getElementById('results').classList.remove('hidden');
 }

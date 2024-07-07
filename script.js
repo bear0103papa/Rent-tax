@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const generateImageBtn = document.getElementById('generateImage');
     const downloadLink = document.getElementById('downloadLink');
     const imageContainer = document.getElementById('imageContainer');
+    const shareImageBtn = document.getElementById('shareImage');
 
     function formatNumber(num) {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -117,5 +118,33 @@ document.addEventListener('DOMContentLoaded', function() {
         // 更新下載連結
         downloadLink.href = img.src;
         downloadLink.style.display = 'inline-block';
+
+        // 顯示分享按鈕
+        shareImageBtn.style.display = 'inline-block';
+    });
+
+    shareImageBtn.addEventListener('click', async function() {
+        const img = imageContainer.querySelector('img');
+        if (!img) return;
+
+        // 檢查瀏覽器是否支持Web Share API
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: '租金扣繳計算結果',
+                    text: '查看我的租金扣繳計算結果',
+                    url: img.src
+                });
+            } catch (error) {
+                console.error('分享失敗:', error);
+            }
+        } else {
+            // 如果不支持Web Share API，則提供複製鏈接的功能
+            navigator.clipboard.writeText(img.src).then(function() {
+                alert('圖片鏈接已複製到剪貼板');
+            }, function(err) {
+                console.error('無法複製鏈接: ', err);
+            });
+        }
     });
 });

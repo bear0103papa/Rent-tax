@@ -142,16 +142,16 @@ button:hover {
     50% { opacity: 1; }
     100% { opacity: 0; }
 }
-
 .tax-toggle {
     position: relative;
     width: 200px;
     height: 40px;
     background-color: rgba(0, 0, 102, 0.8);
-    border: 1px solid #4da6ff;
+    border: 2px solid #4da6ff;
     border-radius: 20px;
     display: flex;
     margin-bottom: 20px;
+    overflow: hidden;
 }
 
 .tax-toggle input {
@@ -165,27 +165,29 @@ button:hover {
     cursor: pointer;
     color: #80bfff;
     transition: all 0.3s ease;
+    z-index: 1;
+    font-weight: bold;
 }
 
 .tax-toggle label:hover {
     color: #00ffff;
 }
 
-.tax-toggle input:checked + label {
-    color: #000033;
-}
-
-.tax-toggle::before {
-    content: '';
+.tax-toggle .slider {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 50%;
     height: 100%;
-    left: 0;
     background-color: #4da6ff;
     border-radius: 20px;
     transition: all 0.3s ease;
 }
 
-.tax-toggle input:last-child:checked ~ ::before {
+.tax-toggle input:checked + label {
+    color: #000033;
+}
+
+.tax-toggle input:last-of-type:checked ~ .slider {
     left: 50%;
 }

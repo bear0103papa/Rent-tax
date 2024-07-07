@@ -176,8 +176,7 @@ input[type="text"] {
     margin-top: 20px;
     text-align: center;
 }
-
-#generateImage, #downloadLink, #shareImage {
+#generateImage, #downloadLink {
     display: inline-block;
     padding: 10px 20px;
     background-color: #4da6ff;
@@ -189,22 +188,11 @@ input[type="text"] {
     transition: all 0.3s ease;
 }
 
-#generateImage:hover, #downloadLink:hover, #shareImage:hover {
+#generateImage:hover, #downloadLink:hover {
     background-color: #00ffff;
     box-shadow: 0 0 15px #00ffff;
 }
 
-#downloadLink, #shareImage {
+#downloadLink {
     display: none;
-}
-
-#imageContainer {
-    margin-top: 20px;
-    text-align: center;
-}
-
-#imageContainer img {
-    max-width: 100%;
-    border: 2px solid #4da6ff;
-    border-radius: 10px;
 }

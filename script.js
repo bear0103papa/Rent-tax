@@ -5,7 +5,7 @@ document.getElementById('rentForm').addEventListener('submit', function(e) {
 
 function calculateRent() {
     const rentAmount = parseFloat(document.getElementById('rentAmount').value);
-    const includeTax = document.getElementById('includeTax').value === 'yes';
+    const includeTax = document.querySelector('input[name="includeTax"]:checked').value === 'yes';
     
     let actualRent, withholdingAmount, healthInsurance;
     
@@ -19,10 +19,14 @@ function calculateRent() {
         healthInsurance = Math.round(actualRent * 0.0211);
     }
     
-    document.getElementById('contractRent').textContent = Math.round(rentAmount);
-    document.getElementById('withholdingAmount').textContent = withholdingAmount;
-    document.getElementById('healthInsurance').textContent = healthInsurance;
-    document.getElementById('actualRent').textContent = actualRent;
+    document.getElementById('contractRent').textContent = formatNumber(Math.round(rentAmount));
+    document.getElementById('withholdingAmount').textContent = formatNumber(withholdingAmount);
+    document.getElementById('healthInsurance').textContent = formatNumber(healthInsurance);
+    document.getElementById('actualRent').textContent = formatNumber(actualRent);
     
     document.getElementById('results').classList.remove('hidden');
+}
+
+function formatNumber(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

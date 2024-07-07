@@ -1,23 +1,39 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('rentForm');
+    const rentAmountInput = document.getElementById('rentAmount');
     const taxToggle = document.querySelector('.tax-toggle');
     const results = document.getElementById('results');
+    const generateImageBtn = document.getElementById('generateImage');
+    const downloadLink = document.getElementById('downloadLink');
 
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
+    function formatNumber(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function unformatNumber(str) {
+        return parseFloat(str.replace(/,/g, ''));
+    }
+
+    rentAmountInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/,/g, '');
+        value = value.replace(/\D/g, '');
+        if (value) {
+            value = parseInt(value, 10);
+            e.target.value = formatNumber(value);
+        } else {
+            e.target.value = '';
+        }
         calculateRent();
     });
 
-    taxToggle.addEventListener('change', function(e) {
-        if (e.target.type === 'radio') {
-            if (!results.classList.contains('hidden')) {
-                calculateRent();
-            }
-        }
-    });
+    taxToggle.addEventListener('change', calculateRent);
 
     function calculateRent() {
-        const rentAmount = parseFloat(document.getElementById('rentAmount').value);
+        const rentAmount = unformatNumber(rentAmountInput.value);
+        if (!rentAmount) {
+            clearResults();
+            return;
+        }
+
         const includeTax = document.getElementById('taxIncluded').checked;
         
         let actualRent, withholdingAmount, healthInsurance;
@@ -32,15 +48,24 @@ document.addEventListener('DOMContentLoaded', function() {
             healthInsurance = Math.round(actualRent * 0.0211);
         }
         
-        document.getElementById('contractRent').textContent = formatNumber(Math.round(rentAmount));
+        document.getElementById('contractRent').textContent = formatNumber(rentAmount);
         document.getElementById('withholdingAmount').textContent = formatNumber(withholdingAmount);
         document.getElementById('healthInsurance').textContent = formatNumber(healthInsurance);
         document.getElementById('actualRent').textContent = formatNumber(actualRent);
-        
-        results.classList.remove('hidden');
     }
 
-    function formatNumber(num) {
-        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    function clearResults() {
+        document.getElementById('contractRent').textContent = '';
+        document.getElementById('withholdingAmount').textContent = '';
+        document.getElementById('healthInsurance').textContent = '';
+        document.getElementById('actualRent').textContent = '';
     }
+
+    generateImageBtn.addEventListener('click', function() {
+        html2canvas(document.querySelector('.container')).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            downloadLink.href = imgData;
+            downloadLink.style.display = 'inline-block';
+        });
+    });
 });

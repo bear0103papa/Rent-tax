@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     const rentAmountInput = document.getElementById('rentAmount');
     const taxToggle = document.querySelector('.tax-toggle');
-    const results = document.getElementById('results');
     const generateImageBtn = document.getElementById('generateImage');
     const downloadLink = document.getElementById('downloadLink');
+    const imageContainer = document.getElementById('imageContainer');
 
     function formatNumber(num) {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -62,10 +62,60 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     generateImageBtn.addEventListener('click', function() {
-        html2canvas(document.querySelector('.container')).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            downloadLink.href = imgData;
-            downloadLink.style.display = 'inline-block';
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 600;
+        canvas.height = 800;
+
+        // 設置背景
+        ctx.fillStyle = '#000033';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // 設置文字樣式
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 24px Arial';
+        ctx.textAlign = 'center';
+
+        // 繪製標題
+        ctx.fillText('廖美倫工商記帳士事務所 租金扣繳計算結果', canvas.width / 2, 50);
+
+        // 繪製計算結果
+        ctx.font = '18px Arial';
+        ctx.textAlign = 'left';
+        const results = [
+            `合約租金金額: ${document.getElementById('contractRent').textContent}`,
+            `是否含稅: ${document.getElementById('taxIncluded').checked ? '是' : '否'}`,
+            `租金扣繳金額: ${document.getElementById('withholdingAmount').textContent}`,
+            `二代健保補充保費金額(2.11%): ${document.getElementById('healthInsurance').textContent}`,
+            `實際租金金額: ${document.getElementById('actualRent').textContent}`
+        ];
+        results.forEach((result, index) => {
+            ctx.fillText(result, 50, 100 + index * 30);
         });
+
+        // 繪製聯繫信息
+        ctx.font = '16px Arial';
+        const contactInfo = [
+            '我們是一家擁有逾27年豐富經驗，由經過專業執照認證記帳士事務所，',
+            '專注於提供高品質的稅務諮詢服務。',
+            '無論您計畫成立新公司，或是尋求穩定可信賴的記帳服務，',
+            '我們誠摯歡迎您在工作日致電我們進行諮詢。',
+            '如需進一步了解我們，請隨時聯繫：',
+            '名稱：廖美倫工商記帳士事務所',
+            '電話：(03)4596769'
+        ];
+        contactInfo.forEach((line, index) => {
+            ctx.fillText(line, 50, 300 + index * 25);
+        });
+
+        // 顯示圖片
+        const img = new Image();
+        img.src = canvas.toDataURL('image/png');
+        imageContainer.innerHTML = '';
+        imageContainer.appendChild(img);
+
+        // 更新下載連結
+        downloadLink.href = img.src;
+        downloadLink.style.display = 'inline-block';
     });
 });

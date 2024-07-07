@@ -21,12 +21,13 @@
             <input type="number" id="rentAmount" required>
             
             <label>合約租金含稅：</label>
-            <div class="tax-toggle">
-                <input type="radio" id="taxNotIncluded" name="includeTax" value="no" checked>
-                <input type="radio" id="taxIncluded" name="includeTax" value="yes">
-                <label for="taxNotIncluded" class="toggle-left">未含稅</label>
-                <label for="taxIncluded" class="toggle-right">已含稅</label>
-            </div>
+<div class="tax-toggle">
+    <input type="radio" id="taxNotIncluded" name="includeTax" value="no" checked>
+    <input type="radio" id="taxIncluded" name="includeTax" value="yes">
+    <label for="taxNotIncluded" class="toggle-left">未含稅</label>
+    <label for="taxIncluded" class="toggle-right">已含稅</label>
+    <span class="slider"></span>
+</div>
             
             <button type="submit">計算</button>
         </form>

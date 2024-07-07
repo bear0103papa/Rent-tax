@@ -177,7 +177,7 @@ input[type="text"] {
     text-align: center;
 }
 
-#generateImage, #downloadLink {
+#generateImage, #downloadLink, #shareImage {
     display: inline-block;
     padding: 10px 20px;
     background-color: #4da6ff;
@@ -189,12 +189,12 @@ input[type="text"] {
     transition: all 0.3s ease;
 }
 
-#generateImage:hover, #downloadLink:hover {
+#generateImage:hover, #downloadLink:hover, #shareImage:hover {
     background-color: #00ffff;
     box-shadow: 0 0 15px #00ffff;
 }
 
-#downloadLink {
+#downloadLink, #shareImage {
     display: none;
 }
 

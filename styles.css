@@ -191,3 +191,30 @@ button:hover {
 .tax-toggle input:last-of-type:checked ~ .slider {
     left: 50%;
 }
+
+
+#shareSection {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#generateImage, #downloadLink {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4da6ff;
+    color: #000033;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#generateImage:hover, #downloadLink:hover {
+    background-color: #00ffff;
+    box-shadow: 0 0 15px #00ffff;
+}
+
+#downloadLink {
+    display: none;
+}

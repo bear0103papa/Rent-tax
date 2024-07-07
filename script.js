@@ -30,3 +30,12 @@ function calculateRent() {
 function formatNumber(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+document.querySelectorAll('.tax-toggle input').forEach(input => {
+    input.addEventListener('change', function() {
+        // 當切換時，如果已經顯示了結果，則重新計算
+        if (!document.getElementById('results').classList.contains('hidden')) {
+            calculateRent();
+        }
+    });
+});

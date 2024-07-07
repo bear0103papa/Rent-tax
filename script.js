@@ -62,6 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('actualRent').textContent = '';
     }
 
+
+    let generatedImageUrl = null;
+
     generateImageBtn.addEventListener('click', function() {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
@@ -109,14 +112,17 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.fillText(line, 50, 300 + index * 25);
         });
 
+        // 生成圖片 URL
+        generatedImageUrl = canvas.toDataURL('image/png');
+
         // 顯示圖片
         const img = new Image();
-        img.src = canvas.toDataURL('image/png');
+        img.src = generatedImageUrl;
         imageContainer.innerHTML = '';
         imageContainer.appendChild(img);
 
         // 更新下載連結
-        downloadLink.href = img.src;
+        downloadLink.href = generatedImageUrl;
         downloadLink.style.display = 'inline-block';
 
         // 顯示分享按鈕
@@ -124,27 +130,40 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     shareImageBtn.addEventListener('click', async function() {
-        const img = imageContainer.querySelector('img');
-        if (!img) return;
+        if (!generatedImageUrl) return;
 
         // 檢查瀏覽器是否支持Web Share API
         if (navigator.share) {
             try {
+                // 將 Data URL 轉換為 Blob
+                const response = await fetch(generatedImageUrl);
+                const blob = await response.blob();
+                const file = new File([blob], 'rent_calculation.png', { type: 'image/png' });
+
                 await navigator.share({
                     title: '租金扣繳計算結果',
                     text: '查看我的租金扣繳計算結果',
-                    url: img.src
+                    files: [file]
                 });
             } catch (error) {
                 console.error('分享失敗:', error);
+                fallbackShare();
             }
         } else {
-            // 如果不支持Web Share API，則提供複製鏈接的功能
-            navigator.clipboard.writeText(img.src).then(function() {
-                alert('圖片鏈接已複製到剪貼板');
-            }, function(err) {
-                console.error('無法複製鏈接: ', err);
-            });
+            fallbackShare();
         }
     });
+
+    function fallbackShare() {
+        // 如果不支持Web Share API或分享失敗，則提供複製鏈接的功能
+        const tempInput = document.createElement('textarea');
+        tempInput.value = '我的租金扣繳計算結果：\n' + 
+            document.getElementById('results').innerText + '\n' +
+            '由廖美倫工商記帳士事務所提供計算服務';
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        alert('計算結果文字已複製到剪貼板，您可以將其貼上並分享。');
+    }
 });

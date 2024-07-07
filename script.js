@@ -64,8 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
     generateImageBtn.addEventListener('click', function() {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = 600;
-        canvas.height = 800;
+        canvas.width = 800;
+        canvas.height = 1000;
 
         // 設置背景
         ctx.fillStyle = '#000033';
@@ -73,14 +73,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // 設置文字樣式
         ctx.fillStyle = '#FFFFFF';
-        ctx.font = 'bold 24px Arial';
+        ctx.font = 'bold 32px Arial';
         ctx.textAlign = 'center';
 
         // 繪製標題
-        ctx.fillText('廖美倫工商記帳士事務所 租金扣繳計算結果', canvas.width / 2, 50);
+        ctx.fillText('廖美倫工商記帳士事務所 租金扣繳計算結果', canvas.width / 2, 70);
 
         // 繪製計算結果
-        ctx.font = '18px Arial';
+        ctx.font = '24px Arial';
         ctx.textAlign = 'left';
         const results = [
             `合約租金金額: ${document.getElementById('contractRent').textContent}`,
@@ -90,11 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
             `實際租金金額: ${document.getElementById('actualRent').textContent}`
         ];
         results.forEach((result, index) => {
-            ctx.fillText(result, 50, 100 + index * 30);
+            ctx.fillText(result, 50, 140 + index * 40);
         });
 
         // 繪製聯繫信息
-        ctx.font = '16px Arial';
+        ctx.font = '20px Arial';
         const contactInfo = [
             '我們是一家擁有逾27年豐富經驗，由經過專業執照認證記帳士事務所，',
             '專注於提供高品質的稅務諮詢服務。',
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
             '電話：(03)4596769'
         ];
         contactInfo.forEach((line, index) => {
-            ctx.fillText(line, 50, 300 + index * 25);
+            ctx.fillText(line, 50, 400 + index * 30);
         });
 
         // 顯示圖片

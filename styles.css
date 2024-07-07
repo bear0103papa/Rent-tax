@@ -28,16 +28,17 @@ body {
     background-color: rgba(0, 0, 51, 0.8);
     box-shadow: 0 0 20px rgba(0,255,255,0.2);
     border-radius: 10px;
+    backdrop-filter: blur(5px);
 }
 
 h1, h2, h3 {
-    color: #00ffff;
-    text-shadow: 0 0 5px #00ffff;
+    color: #4da6ff;
+    text-shadow: 0 0 10px #4da6ff;
 }
 
 .highlight {
-    color: #ff00ff;
-    text-shadow: 0 0 5px #ff00ff;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
 }
 
 form {
@@ -47,7 +48,7 @@ form {
 label {
     display: block;
     margin-bottom: 5px;
-    color: #00ffff;
+    color: #80bfff;
 }
 
 input, select {
@@ -56,22 +57,25 @@ input, select {
     margin-bottom: 10px;
     background-color: rgba(0, 0, 102, 0.8);
     color: #fff;
-    border: 1px solid #00ffff;
+    border: 1px solid #4da6ff;
+    border-radius: 5px;
 }
 
 button {
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #00ffff;
+    background-color: #4da6ff;
     color: #000033;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    border-radius: 5px;
 }
 
 button:hover {
-    background-color: #ff00ff;
+    background-color: #00ffff;
+    box-shadow: 0 0 15px #00ffff;
 }
 
 #results {
@@ -79,7 +83,8 @@ button:hover {
     padding: 20px;
     margin-top: 20px;
     border-radius: 5px;
-    border: 1px solid #00ffff;
+    border: 1px solid #4da6ff;
+    box-shadow: 0 0 10px #4da6ff;
 }
 
 .hidden {
@@ -95,19 +100,46 @@ button:hover {
 }
 
 .links a, .about-us a {
-    color: #00ffff;
+    color: #80bfff;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .links a:hover, .about-us a:hover {
-    color: #ff00ff;
-    text-shadow: 0 0 5px #ff00ff;
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff;
 }
 
 .about-us {
     background-color: rgba(0, 0, 102, 0.8);
     padding: 20px;
     border-radius: 5px;
-    border: 1px solid #00ffff;
+    border: 1px solid #4da6ff;
+    box-shadow: 0 0 10px #4da6ff;
+}
+
+/* 添加一些星星效果 */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle 5s infinite;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
 }

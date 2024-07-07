@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>租金扣繳計算器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>租金扣繳計算器</h1>
+        <form id="rentForm">
+            <label for="rentAmount">合約租金：</label>
+            <input type="number" id="rentAmount" required>
+            
+            <label for="includeTax">合約租金含稅：</label>
+            <select id="includeTax">
+                <option value="yes">是</option>
+                <option value="no">否</option>
+            </select>
+            
+            <button type="submit">計算</button>
+        </form>
+        
+        <div id="results" class="hidden">
+            <h2>計算結果</h2>
+            <p>合約租金: <span id="contractRent"></span></p>
+            <p>租金扣繳金額: <span id="withholdingAmount"></span></p>
+            <p>二代健保補充保費金額: <span id="healthInsurance"></span></p>
+            <p>實際繳納租金: <span id="actualRent"></span></p>
+        </div>
+        
+        <div class="links">
+            <h3>相關連結</h3>
+            <ul>
+                <li><a href="https://www.etax.nat.gov.tw/etwmain/etw144w/152" target="_blank">財政部國稅局各類所得繳款書</a></li>
+                <li><a href="https://eservice.nhi.gov.tw/2nd/" target="_blank">衛生福利部中央健保署 租金收入扣繳補充保險費繳款書列印或郵寄申請</a></li>
+            </ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -20,12 +20,14 @@
             <label for="rentAmount">合約租金：</label>
             <input type="number" id="rentAmount" required>
             
-       <div class="tax-toggle">
-  <input type="radio" id="taxNotIncluded" name="includeTax" value="no" checked>
-  <input type="radio" id="taxIncluded" name="includeTax" value="yes">
-  <label for="taxNotIncluded" class="toggle-left">未含稅</label>
-  <label for="taxIncluded" class="toggle-right">已含稅</label>
-</div>
+            <label>合約租金含稅：</label>
+            <div class="tax-toggle">
+                <input type="radio" id="taxNotIncluded" name="includeTax" value="no" checked>
+                <input type="radio" id="taxIncluded" name="includeTax" value="yes">
+                <label for="taxNotIncluded" class="toggle-left">未含稅</label>
+                <label for="taxIncluded" class="toggle-right">已含稅</label>
+            </div>
+            
             <button type="submit">計算</button>
         </form>
         
@@ -36,7 +38,6 @@
             <p>二代健保補充保費金額: <span id="healthInsurance"></span></p>
             <p>實際繳納租金: <span id="actualRent"></span></p>
         </div>
-        
         
         <div class="links">
             <h3>相關連結</h3>

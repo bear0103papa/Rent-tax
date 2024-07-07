@@ -3,7 +3,21 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #000033;
+    color: #fff;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+    animation: backgroundMove 60s linear infinite;
+}
+
+@keyframes backgroundMove {
+    0% { background-position: 0 0, 40px 60px, 130px 270px, 70px 100px; }
+    100% { background-position: 550px 550px, 590px 610px, 680px 820px, 620px 650px; }
 }
 
 .container {
@@ -11,12 +25,19 @@ body {
     margin: auto;
     overflow: hidden;
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 51, 0.8);
+    box-shadow: 0 0 20px rgba(0,255,255,0.2);
+    border-radius: 10px;
 }
 
 h1, h2, h3 {
-    color: #333;
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+.highlight {
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff;
 }
 
 form {
@@ -26,40 +47,46 @@ form {
 label {
     display: block;
     margin-bottom: 5px;
+    color: #00ffff;
 }
 
 input, select {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
+    background-color: rgba(0, 0, 102, 0.8);
+    color: #fff;
+    border: 1px solid #00ffff;
 }
 
 button {
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #333;
-    color: #fff;
+    background-color: #00ffff;
+    color: #000033;
     border: none;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background-color: #555;
+    background-color: #ff00ff;
 }
 
 #results {
-    background-color: #f9f9f9;
+    background-color: rgba(0, 0, 102, 0.8);
     padding: 20px;
     margin-top: 20px;
     border-radius: 5px;
+    border: 1px solid #00ffff;
 }
 
 .hidden {
     display: none;
 }
 
-.links {
+.links, .about-us {
     margin-top: 20px;
 }
 
@@ -67,11 +94,20 @@ button:hover {
     padding-left: 20px;
 }
 
-.links a {
-    color: #333;
+.links a, .about-us a {
+    color: #00ffff;
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-.links a:hover {
-    text-decoration: underline;
+.links a:hover, .about-us a:hover {
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff;
+}
+
+.about-us {
+    background-color: rgba(0, 0, 102, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #00ffff;
 }

@@ -51,7 +51,7 @@ label {
     color: #80bfff;
 }
 
-input, select {
+input[type="number"] {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
@@ -118,7 +118,6 @@ button:hover {
     box-shadow: 0 0 10px #4da6ff;
 }
 
-/* 添加一些星星效果 */
 .stars {
     position: fixed;
     top: 0;
@@ -145,48 +144,48 @@ button:hover {
 }
 
 .tax-toggle {
-  position: relative;
-  width: 200px;
-  height: 40px;
-  background-color: rgba(0, 0, 102, 0.8);
-  border: 1px solid #4da6ff;
-  border-radius: 20px;
-  display: flex;
-  margin-bottom: 20px;
+    position: relative;
+    width: 200px;
+    height: 40px;
+    background-color: rgba(0, 0, 102, 0.8);
+    border: 1px solid #4da6ff;
+    border-radius: 20px;
+    display: flex;
+    margin-bottom: 20px;
 }
 
 .tax-toggle input {
-  display: none;
+    display: none;
 }
 
 .tax-toggle label {
-  flex: 1;
-  text-align: center;
-  line-height: 40px;
-  cursor: pointer;
-  color: #80bfff;
-  transition: all 0.3s ease;
+    flex: 1;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    color: #80bfff;
+    transition: all 0.3s ease;
 }
 
 .tax-toggle label:hover {
-  color: #00ffff;
+    color: #00ffff;
 }
 
 .tax-toggle input:checked + label {
-  color: #000033;
+    color: #000033;
 }
 
 .tax-toggle::before {
-  content: '';
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  left: 0;
-  background-color: #4da6ff;
-  border-radius: 20px;
-  transition: all 0.3s ease;
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 0;
+    background-color: #4da6ff;
+    border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
 .tax-toggle input:last-child:checked ~ ::before {
-  left: 50%;
+    left: 50%;
 }
